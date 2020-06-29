@@ -42,24 +42,24 @@
             $newfname = __DIR__ . '/videos/'. $id .'.mp4';
 
             set_time_limit(0);
-            $file = file_get_contents($downloadURL);
-            file_put_contents($newfname, $file);
-            // $file = fopen(urldecode($downloadURL), "rb");
-            // if ($file) {
-            //     $newf = fopen($newfname, "wb");
-            //     if ($newf) {
-            //         while (!feof($file)) {
-            //             fwrite($newf, fread($file, 2 * 1024 * 8), 2 * 1024 * 8);
-            //         }
-            //     }
-            // }
-            // if ($file) {
-            //     fclose($file);
-            // }
-            // if ($newf) {
-            //     fclose($newf);
-            // }
-            // echo 'success - '.$newfname;
+            // $file = file_get_contents($downloadURL);
+            // file_put_contents($newfname, $file);
+            $file = fopen(urldecode($downloadURL), "rb");
+            if ($file) {
+                $newf = fopen($newfname, "wb");
+                if ($newf) {
+                    while (!feof($file)) {
+                        fwrite($newf, fread($file, 8 * 1024 * 8), 8 * 1024 * 8);
+                    }
+                }
+            }
+            if ($file) {
+                fclose($file);
+            }
+            if ($newf) {
+                fclose($newf);
+            }
+            echo 'success - '.$newfname;
 
             // $video = new Google_Service_YouTube_Video();
             // $videoSnippet = new Google_Service_YouTube_VideoSnippet();
