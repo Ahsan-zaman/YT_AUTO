@@ -7,7 +7,7 @@ session_start();
 $client = new Google_Client();
 $client->setAuthConfigFile('client_secrets.json');
 // $client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/oauth2callback.php');
-$client->setRedirectUri('http://thevirtualcoding.com/oauth2callback.php');
+$client->setRedirectUri('http://thevirtualcoding.com/yt_auto/oauth2callback.php');
 $client->setScopes([
     'https://www.googleapis.com/auth/youtube.readonly',
     'https://www.googleapis.com/auth/youtube.upload',
