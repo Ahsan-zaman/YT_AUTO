@@ -36,7 +36,8 @@ $client->setAccessType('offline');
 // $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
 // $client->setAccessToken($accessToken);
 if (!isset($_SESSION['access_token'])) {
-    $redirect_uri = 'http://thevirtualcoding.com/yt_auto/oauth2callback.php';
+    // $redirect_uri = 'http://thevirtualcoding.com/yt_auto/oauth2callback.php';
+    $redirect_uri = 'https://twinsa.net/yt_auto/oauth2callback.php';
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
 $client->setAccessToken($_SESSION['access_token']);
