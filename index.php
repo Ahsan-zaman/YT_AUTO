@@ -36,7 +36,7 @@ $client->setAccessType('offline');
 // $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
 // $client->setAccessToken($accessToken);
 if (!isset($_SESSION['access_token'])) {
-    $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/oauth2callback.php';
+    $redirect_uri = 'http://thevirtualcoding.com/yt_auto/oauth2callback.php';
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
 $client->setAccessToken($_SESSION['access_token']);
@@ -130,7 +130,7 @@ if (!isset($_POST['url'])) {
             max-width: 300px;
         }
     </style>
-    <form action="/" method="post">
+    <form action="./" method="post">
         <label for="url">Enter video ID</label>
         <input type="text" name="url">
         <button class="btn" type="submit">GET INFO</button>
@@ -171,7 +171,7 @@ if (!isset($_POST['url'])) {
                                         url
                                     </td>
                                     <td>
-                                        <form action="/dlNup.php" method="post">
+                                        <form action="./dlNup.php" method="post">
                                             <input hidden type="text" value="'.$itag->url.'" name="download">
                                             <input hidden type="text" value="'.$youtube_id.'" name="id">
                                             <input hidden type="text" value="'.$video['items'][0]['snippet']['description'].'" name="description">
