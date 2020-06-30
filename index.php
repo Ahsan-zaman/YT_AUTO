@@ -25,7 +25,8 @@ $client->setAuthConfig('client_secrets.json');
 $client->setAccessType('offline');
 
 
-
+print_r($_SESSION);
+exit();
 if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 
     // $client->authenticate($_SESSION['access_token']);
