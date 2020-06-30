@@ -7,8 +7,8 @@ session_start();
 $client = new Google_Client();
 $client->setAuthConfigFile('client_secrets.json');
 // $client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/oauth2callback.php');
-// $client->setRedirectUri('http://thevirtualcoding.com/yt_auto/oauth2callback.php');
-$client->setRedirectUri('https://twinsa.net/yt_auto/oauth2callback.php');
+$client->setRedirectUri('http://thevirtualcoding.com/yt_auto/oauth2callback.php');
+// $client->setRedirectUri('https://twinsa.net/yt_auto/oauth2callback.php');
 $client->setScopes([
     'https://www.googleapis.com/auth/youtube.readonly',
     'https://www.googleapis.com/auth/youtube.upload',
@@ -22,8 +22,8 @@ if (! isset($_GET['code'])) {
 } else {
   $client->authenticate($_GET['code']);
   $_SESSION['access_token'] = $client->getAccessToken();
-//   $redirect_uri = 'http://thevirtualcoding.com/yt_auto/';
-  $redirect_uri = 'https://twinsa.net/yt_auto/';
+  $redirect_uri = 'http://thevirtualcoding.com/yt_auto/';
+//   $redirect_uri = 'https://twinsa.net/yt_auto/';
 //   $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/';
   header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
