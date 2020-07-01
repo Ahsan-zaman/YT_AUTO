@@ -129,7 +129,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
         }
         @media only screen and (min-width:800px){
             .box-1{
-                width: 100%;
+                max-width: 50%;
             }
         }
     </style>
