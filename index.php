@@ -122,6 +122,16 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
             margin: 10px auto;
             font-size: 1.3rem;
         }
+        .box-1{
+            padding: 2vw;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        @media only screen and (max-width:800px){
+            .box-1{
+                width: 100%;
+            }
+        }
     </style>
     <form action="./" method="post">
         <label for="url">Enter video ID</label>
@@ -172,7 +182,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
                     // foreach ([$i_tags->adaptiveFormats[0]] as $itag) {
                 foreach ($i_tags->adaptiveFormats as $itag) {
                     if(!empty($itag->contentLength) && !empty($itag->qualityLabel)){
-                        echo '<div style="padding: 2vw;box-sizing: border-box;">
+                        echo '<div class="box-1"">
                             <table>
                                 <tr>
                                     <td>
