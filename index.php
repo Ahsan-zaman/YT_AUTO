@@ -127,7 +127,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
             box-sizing: border-box;
             width: 100%;
         }
-        @media only screen and (max-width:800px){
+        @media only screen and (min-width:800px){
             .box-1{
                 width: 100%;
             }
