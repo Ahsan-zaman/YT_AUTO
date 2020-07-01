@@ -123,7 +123,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
             if (isset($i_tags)) {
                 // foreach ([$i_tags->adaptiveFormats[0]] as $itag) {
                 foreach ($i_tags->adaptiveFormats as $itag) {
-                    if(!empty($itag->contentLength && !empty($itag->qualityLabel)){
+                    if(!empty($itag->contentLength) && !empty($itag->qualityLabel)){
                         echo '<div style="padding: 2vw;box-sizing: border-box;">
                             <table>
                                 <tr>
