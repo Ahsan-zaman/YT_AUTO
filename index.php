@@ -78,6 +78,13 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
         *{
             box-sizing: border-box;
         }
+        h1{
+            width: 100%;
+            padding: 0px 2vw;
+            color: #1264a3;
+            margin: 15px 0px 0px 0px;
+            font-size: 2.5rem;
+        }
         table{
             border-collapse: collapse;
             width: 100%;
@@ -106,6 +113,9 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
             text-decoration: none;
             outline: none;
             border: none;
+            width: 100%;
+            font-weight: bold;
+            border-radius: 4px;
         }
         .dl{
             background-color: #d10619;
@@ -121,27 +131,49 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
     <section style="display: flex;justify-content:center;max-width:800px;margin:auto;flex-wrap: wrap;">
         <?php
             if (isset($i_tags)) {
-                // foreach ([$i_tags->adaptiveFormats[0]] as $itag) {
+                echo  '<h1>Video Details</h1>';
+                echo '<div style="padding: 2vw;box-sizing: border-box;">
+                        <table>
+                            <tr>
+                                <td>
+                                    Title
+                                </td>
+                                <td>
+                                    '. $video['items'][0]['snippet']['title'] .'
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Category
+                                </td>
+                                <td>
+                                    '. $video['items'][0]['snippet']['categoryId'] .'
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Description
+                                </td>
+                                <td>
+                                    '. $video['items'][0]['snippet']['description'] .'
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Tags
+                                </td>
+                                <td>
+                                    '. implode(', ', $video['items'][0]['snippet']['tags']) .'
+                                </td>
+                            </tr>
+                        </table>
+                    </div>';
+                    echo  '<h1>Download Links</h1>';
+                    // foreach ([$i_tags->adaptiveFormats[0]] as $itag) {
                 foreach ($i_tags->adaptiveFormats as $itag) {
                     if(!empty($itag->contentLength) && !empty($itag->qualityLabel)){
                         echo '<div style="padding: 2vw;box-sizing: border-box;">
                             <table>
-                                <tr>
-                                    <td>
-                                        Title
-                                    </td>
-                                    <td>
-                                        '. $video['items'][0]['snippet']['title'] .'
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        itag
-                                    </td>
-                                    <td>
-                                        '. $itag->itag .'
-                                    </td>
-                                </tr>
                                 <tr>
                                     <td>
                                         mimeType
@@ -174,30 +206,6 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
                                     </td>
                                     <td>
                                         '. +$itag->contentLength / (1024*1024) .'MB
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Category
-                                    </td>
-                                    <td>
-                                        '. $video['items'][0]['snippet']['categoryId'] .'
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Description
-                                    </td>
-                                    <td>
-                                        '. $video['items'][0]['snippet']['description'] .'
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Tags
-                                    </td>
-                                    <td>
-                                        '. implode(', ', $video['items'][0]['snippet']['tags']) .'
                                     </td>
                                 </tr>
                             </table>
