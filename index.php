@@ -76,17 +76,17 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 <body>
     <style>
         *{
-            border-radius: 2px;
             box-sizing: border-box;
         }
         table{
             border-collapse: collapse;
             width: 100%;
             height: 100%;
+            border-radius: 5px;
         }
         td{
             padding: 5px 6px;
-            border: 1px solid #000;
+            border-bottom: 1px solid rgba(0,0,0,0.5);
         }
         form{
             display: flex;
@@ -102,6 +102,15 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
         .btn{
             background-color: #449d44;color:#fff;padding:8px 12px;display:block;
             max-width: 300px;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            border: none;
+        }
+        .dl{
+            background-color: #d10619;
+            margin: 10px auto;
+            font-size: 1.3rem;
         }
     </style>
     <form action="./" method="post">
@@ -114,8 +123,8 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
             if (isset($i_tags)) {
                 // foreach ([$i_tags->adaptiveFormats[0]] as $itag) {
                 foreach ($i_tags->adaptiveFormats as $itag) {
-                    if(!empty($itag->contentLength)){
-                        echo '<div style="padding: 2vw;background:#e3e3e3;box-sizing: border-box;">
+                    if(!empty($itag->contentLength && !empty($itag->qualityLabel)){
+                        echo '<div style="padding: 2vw;box-sizing: border-box;">
                             <table>
                                 <tr>
                                     <td>
@@ -156,7 +165,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
                                             <input hidden type="text" value="'.implode(',', $video['items'][0]['snippet']['tags']).'" name="tags">
                                             <button class="btn" type="submit">'. $itag->qualityLabel .'</button>
                                         </form>
-                                        <a class="btn" target="_blank" href="'.$itag->url.'">View Video</a>
+                                        <a class="btn dl" target="_blank" href="'.$itag->url.'">Dl Now</a>
                                     </td>
                                 </tr>
                                 <tr>
