@@ -184,6 +184,14 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
                                 </tr>
                                 <tr>
                                     <td>
+                                        Size
+                                    </td>
+                                    <td>
+                                        '. number_format(+$itag->contentLength / (1024*1024),2) .' MB
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                         url
                                     </td>
                                     <td>
@@ -198,14 +206,6 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
                                             <button class="btn" type="submit">'. $itag->qualityLabel .'</button>
                                         </form>
                                         <a class="btn dl" target="_blank" href="'.$itag->url.'">Dl Now</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        SIZE
-                                    </td>
-                                    <td>
-                                        '. +$itag->contentLength / (1024*1024) .'MB
                                     </td>
                                 </tr>
                             </table>
