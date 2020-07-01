@@ -16,11 +16,13 @@ session_start();
 
 $client = new Google_Client();
 $client->setApplicationName('YT AutoUpload');
+// $client->setRedirectUri('http://' . $_SERVER['HTTP_HOST'] . '/oauth2callback.php');
+$client->setRedirectUri('http://thevirtualcoding.com/yt_auto/oauth2callback.php');
+// $client->setRedirectUri('https://twinsa.net/yt_auto/oauth2callback.php');
 $client->setScopes([
     'https://www.googleapis.com/auth/youtube.readonly',
     'https://www.googleapis.com/auth/youtube.upload',
 ]);
-
 $client->setAuthConfig('client_secrets.json');
 $client->setAccessType('offline');
 
@@ -56,6 +58,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
         // echo json_encode($i_tags);
     }
 }else{
+    // $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/oauth2callback.php';
     $redirect_uri = 'http://thevirtualcoding.com/yt_auto/oauth2callback.php';
     // $redirect_uri = 'https://twinsa.net/yt_auto/oauth2callback.php';
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
@@ -153,6 +156,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
                                             <input hidden type="text" value="'.implode(',', $video['items'][0]['snippet']['tags']).'" name="tags">
                                             <button class="btn" type="submit">'. $itag->qualityLabel .'</button>
                                         </form>
+                                        <a class="btn" target="_blank" href="'.$itag->url.'">View Video</a>
                                     </td>
                                 </tr>
                                 <tr>
