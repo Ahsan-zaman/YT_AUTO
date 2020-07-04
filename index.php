@@ -77,6 +77,7 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
     <style>
         *{
             box-sizing: border-box;
+            word-wrap: break-word;
         }
         h1{
             width: 100%;
@@ -180,8 +181,8 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
                     </div>';
                     echo  '<h1>Download Links</h1>';
                     // foreach ([$i_tags->adaptiveFormats[0]] as $itag) {
-                foreach ($i_tags->adaptiveFormats as $itag) {
-                    if(!empty($itag->contentLength) && !empty($itag->qualityLabel)){
+                foreach ($i_tags->formats as $itag) {
+                    if(!empty($itag->qualityLabel)){
                         echo '<div class="box-1"">
                             <table>
                                 <tr>
