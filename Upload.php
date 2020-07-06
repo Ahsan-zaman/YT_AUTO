@@ -1,6 +1,7 @@
 <?php
     require_once __DIR__ . '/vendor/autoload.php';
     session_start();
+    ini_set('memory_limit', '-1');
 
     $client = new Google_Client();
     $client->setApplicationName('YT AutoUpload');
