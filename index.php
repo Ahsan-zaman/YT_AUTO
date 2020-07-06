@@ -81,7 +81,7 @@ function getRemoteFilesize($url, $formatSize = true, $useHead = true)
         return $clen; // return size in bytes
     }
 
-    $size = $clen[1];
+    $size = $clen;
 
     return number_format($size/ (1024*1024),2); // return formatted size
 }
@@ -220,7 +220,7 @@ function getRemoteFilesize($url, $formatSize = true, $useHead = true)
                                         Size
                                     </td>
                                     <td>
-                                        '.empty($itag->contentLength) ? getRemoteFilesize($itag->url) : number_format(+$itag->contentLength / (1024*1024),2) .' MB
+                                        '. empty($itag->contentLength) ? getRemoteFilesize($itag->url) : number_format(+$itag->contentLength / (1024*1024),2) .' MB
                                     </td>
                                 </tr>
                                 <tr>
