@@ -71,7 +71,7 @@
 </head>
 <body>
     <?php
-        echo '<a class="btn" href="https://www.youtube.com/watch?v='.$response->id.'">View Video</a>';
+        echo '<a target="_blank" class="btn" href="https://www.youtube.com/watch?v='.$response->id.'">View Video</a>';
     ?>
 </body>
 </html>
