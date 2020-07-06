@@ -220,7 +220,13 @@ function getRemoteFilesize($url, $formatSize = true, $useHead = true)
                                         Size
                                     </td>
                                     <td>
-                                        '. empty($itag->contentLength) ? getRemoteFilesize($itag->url) : number_format(+$itag->contentLength / (1024*1024),2) .' MB
+                                        ';
+                        if(empty($itag->contentLength)){
+                            echo getRemoteFilesize($itag->url);
+                        }else{
+                            echo number_format(+$itag->contentLength / (1024*1024),2);
+                        }
+                        echo ' MB
                                     </td>
                                 </tr>
                                 <tr>
