@@ -63,27 +63,34 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
     // $redirect_uri = 'https://twinsa.net/yt_auto/oauth2callback.php';
     header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
-function getRemoteFilesize($url, $formatSize = true, $useHead = true)
+function getRemoteFilesize($url,$length)
 {
-    if (false !== $useHead) {
-        stream_context_set_default(array('http' => array('method' => 'HEAD')));
+    $formatSize = true; 
+    $useHead = true;
+
+    if(empty($length)){
+        if (false !== $useHead) {
+            stream_context_set_default(array('http' => array('method' => 'HEAD')));
+        }
+        $head = array_change_key_case(get_headers($url, 1));
+        // content-length of download (in bytes), read from Content-Length: field
+        $clen = isset($head['content-length']) ? $head['content-length'] : 0;
+    
+        // cannot retrieve file size, return "-1"
+        if (!$clen) {
+            return -1;
+        }
+    
+        if (!$formatSize) {
+            return $clen; // return size in bytes
+        }
+    
+        $size = $clen;
+    
+        return number_format($size/ (1024*1024),2); // return formatted size
+    }else{
+        return number_format($length/ (1024*1024),2);
     }
-    $head = array_change_key_case(get_headers($url, 1));
-    // content-length of download (in bytes), read from Content-Length: field
-    $clen = isset($head['content-length']) ? $head['content-length'] : 0;
-
-    // cannot retrieve file size, return "-1"
-    if (!$clen) {
-        return -1;
-    }
-
-    if (!$formatSize) {
-        return $clen; // return size in bytes
-    }
-
-    $size = $clen;
-
-    return number_format($size/ (1024*1024),2); // return formatted size
 }
 ?>
 <!DOCTYPE html>
@@ -220,7 +227,7 @@ function getRemoteFilesize($url, $formatSize = true, $useHead = true)
                                         Size
                                     </td>
                                     <td>
-                                        '. empty($itag->contentLength) ?  getRemoteFilesize($itag->url) :  number_format(+$itag->contentLength / (1024*1024),2).' MB
+                                        '. getRemoteFilesize($itag->url, $itag->contentLength) .' MB
                                     </td>
                                 </tr>
                                 <tr>
